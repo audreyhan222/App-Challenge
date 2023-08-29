@@ -12,7 +12,9 @@ class _AlarmPageState extends State<AlarmPage> {
   @override
   Widget build (BuildContext context) {
     return Scaffold(
-      body: Center (),
+      body: Center (
+        child: Column(),
+      ),
     );
   }
 }
