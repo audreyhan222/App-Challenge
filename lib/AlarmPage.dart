@@ -10,6 +10,8 @@ class AlarmPage extends StatefulWidget {
 class _AlarmPageState extends State<AlarmPage> {
   @override
   Widget build (BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Center (),
+    );
   }
 }
