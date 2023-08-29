@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "470946054114",
+    "project_id": "congressional-app-challe-e7216",
+    "storage_bucket": "congressional-app-challe-e7216.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470946054114:android:f27e3ace9b2a94853b43bb",
+        "android_client_info": {
+          "package_name": "com.example.project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "470946054114-s4g6de3834g1k5gu50i0qclo9fh4c008.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2ZU2C2QebCfCLTeOfHTca9GQ0aSdVzTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "470946054114-s4g6de3834g1k5gu50i0qclo9fh4c008.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
