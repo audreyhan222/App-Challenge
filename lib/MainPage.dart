@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'AlarmPage.dart';
+import 'NotesPage.dart';
+import 'SchedulePage.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -23,11 +25,21 @@ class _MainPageState extends State<MainPage> {
             child: Text ("Alarm"),
           ),
           TextButton (
-            onPressed: null,
+            onPressed: () {
+              Navigator.push (
+                context,
+                MaterialPageRoute(builder: (context) => const SchedulePage()),
+              );
+            },
             child: Text("Schedule"),
           ),
           TextButton (
-            onPressed: null,
+            onPressed: () {
+              Navigator.push (
+                context,
+                MaterialPageRoute(builder: (context) => const NotesPage()),
+              );
+            },
             child: Text("Notes"),
           ),
           TextButton (
