@@ -10,6 +10,8 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   @override
+  var user_email = "";
+  var user_password = "";
   Widget build (BuildContext context) {
     return Scaffold(
       body: Center (
@@ -26,16 +28,24 @@ class _SignUpPageState extends State<SignUpPage> {
                 border: OutlineInputBorder(),
                 labelText: 'Enter Email Address',
               ),
+              onChanged: (value) {
+                user_email = value;
+              },
             ), 
             TextField(
               obscureText: true,
               decoration: InputDecoration (
                 border: OutlineInputBorder(),
                 labelText: 'Create Password'
-              )
+              ),
+              onChanged: (value) {
+                user_password = value;
+              }
             ),
             ElevatedButton (
               onPressed: () {
+                print(user_email);
+                print(user_password);
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const MainPage()),
