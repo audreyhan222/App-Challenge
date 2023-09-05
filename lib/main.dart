@@ -5,7 +5,17 @@ import 'SignUpPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+//import 'package:firebase_database/firebase_database.dart';
 
+class RealtimeDatabaseInsert extends StatelessWidget {
+  RealtimeDatabaseInsert({Key? key}) : super(key: key);
+  final firestore = FirebaseFirestore.instance;
+  @override
+  Widget build (BuildContext context) {
+    return Scaffold();
+  }
+}
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();

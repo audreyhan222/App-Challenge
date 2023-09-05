@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'MainPage.dart';
+import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -9,6 +14,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final firestore = FirebaseFirestore.instance;
   @override
   var user_email = "";
   var user_password = "";
@@ -42,6 +48,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 user_password = value;
               }
             ),
+            //sign up button
             ElevatedButton (
               onPressed: () {
                 print(user_email);
@@ -50,6 +57,16 @@ class _SignUpPageState extends State<SignUpPage> {
                     context,
                     MaterialPageRoute(builder: (context) => const MainPage()),
                 );
+                final user_data = <String, String> {
+                  "Email" : user_email,
+                  "Password": user_password,
+                };
+                firestore
+                  .collection ("users")
+                  .doc (user_email)
+                  .set (user_data)
+                  .onError((e, _) => print("Error writing document: $e"));
+
               }, 
               child: Text("Sign Up")),
           ]
