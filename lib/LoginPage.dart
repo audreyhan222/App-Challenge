@@ -53,12 +53,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton (
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MainPage()),
-                  );
                   final docRef = firestore.collection("users").doc(user_email);
-                  print(docRef);
                   docRef.get().then (
                     (DocumentSnapshot doc) async {
                       final data = doc.data() as Map<String, dynamic>;
