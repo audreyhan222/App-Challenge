@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'EnterConnectionPage.dart';
 
 class ConnectionsPage extends StatefulWidget {
   const ConnectionsPage({super.key});
@@ -14,8 +15,13 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
         child: Column (
           children: [
             TextButton(
-              onPressed: null,
-              child: Text(""),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const EnterConnectionPage()),
+                );
+              },
+              child: Text("Add a Connection"),
             ),
           ],
         ),
