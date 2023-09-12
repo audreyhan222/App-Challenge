@@ -58,7 +58,9 @@ class _LoginPageState extends State<LoginPage> {
                     (DocumentSnapshot doc) async {
                       final data = doc.data() as Map<String, dynamic>;
                       if (data["Password"] == user_password) {
-                        globals.user_doc = data;
+                        var main_email = data["Main Account"];
+                        globals.user_doc = firestore.collection("users").doc(main_email);
+                        globals.user_id = user_email;
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const MainPage()),

@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'globals.dart' as globals;
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -18,6 +19,7 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   var user_email = "";
   var user_password = "";
+  var user_name = "";
   Widget build (BuildContext context) {
     return Scaffold(
       body: Center (
@@ -28,6 +30,16 @@ class _SignUpPageState extends State<SignUpPage> {
                 Navigator.pop(context);
               }, 
               child: Text("Back")),
+            TextField(
+              obscureText: false,
+              decoration: InputDecoration (
+                border: OutlineInputBorder(),
+                labelText: 'Enter Name'
+              ),
+              onChanged: (value) {
+                user_name = value;
+              }
+            ),
             TextField(
               obscureText: false,
               decoration: InputDecoration(
@@ -48,27 +60,41 @@ class _SignUpPageState extends State<SignUpPage> {
                 user_password = value;
               }
             ),
+
             //sign up button
             ElevatedButton (
               onPressed: () {
-                print(user_email);
-                print(user_password);
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const MainPage()),
                 );
+                
                 final user_data = <String, String> {
                   "Email" : user_email,
                   "Password": user_password,
+                  "Username": user_name,
+                  "Main Email": user_email,
                 };
+
                 firestore
                   .collection ("users")
                   .doc (user_email)
                   .set (user_data)
                   .onError((e, _) => print("Error writing document: $e"));
 
+                final docRef = firestore.collection("users").doc(user_email);
+                  docRef.get().then (
+                    (DocumentSnapshot doc) async {
+                      final data = doc.data() as Map<String, dynamic>;
+                      globals.user_doc = doc;
+                      globals.user_id = user_email;
+                    },
+                    onError: (e) => print("User email or password is incorrect."),
+                  );
+
               }, 
-              child: Text("Sign Up")),
+              child: Text("Sign Up")
+            ),
           ]
         )
       ),
