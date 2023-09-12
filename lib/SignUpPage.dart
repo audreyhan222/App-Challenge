@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'MainPage.dart';
-import 'dart:io';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as globals;
 
@@ -16,10 +11,10 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPageState extends State<SignUpPage> {
   final firestore = FirebaseFirestore.instance;
-  @override
   var user_email = "";
   var user_password = "";
   var user_name = "";
+  @override
   Widget build (BuildContext context) {
     return Scaffold(
       body: Center (
@@ -85,7 +80,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 final docRef = firestore.collection("users").doc(user_email);
                   docRef.get().then (
                     (DocumentSnapshot doc) async {
-                      final data = doc.data() as Map<String, dynamic>;
                       globals.user_doc = user_email;
                       globals.user_id = user_email;
                     },

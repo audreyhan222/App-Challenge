@@ -1,4 +1,3 @@
-import 'package:add_name/ConnectionsPage.dart';
 import 'package:flutter/material.dart';
 import 'AlarmPage.dart';
 import 'NotesPage.dart';

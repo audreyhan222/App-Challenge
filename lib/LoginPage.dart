@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'MainPage.dart';
 import 'globals.dart' as globals;
-import 'dart:io';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
@@ -16,9 +12,9 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final firestore = FirebaseFirestore.instance;
-  @override
   var user_email = "";
   var user_password = "";
+  @override
   @override
   Widget build (BuildContext context){
     return Scaffold(

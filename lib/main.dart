@@ -4,7 +4,6 @@ import 'LoginPage.dart';
 import 'SignUpPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 //import 'package:firebase_database/firebase_database.dart';
 
@@ -22,8 +21,6 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  final storage = FirebaseStorage.instance;
-  final storageRef = FirebaseStorage.instance.ref();
   runApp(MyApp());
 }
 
