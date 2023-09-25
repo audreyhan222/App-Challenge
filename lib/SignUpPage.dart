@@ -81,7 +81,49 @@ class _SignUpPageState extends State<SignUpPage> {
                   docRef.get().then (
                     (DocumentSnapshot doc) async {
                       globals.user_doc = user_email;
-                      globals.user_id = user_email;
+                      globals.user_id = user_email;;
+                      final notes_data = <String, String> {
+                        "Title": "Empty Note",
+                        "Show": "No",
+                        "Text": "none",
+                      };
+
+                      firestore
+                        .collection("users")
+                        .doc (user_email)
+                        .collection ("notes")
+                        .doc (notes_data["Title"])
+                        .set (notes_data)
+                        .onError((e, _) => print("Error writing document: $e"));
+
+                      final alarm_data = <String, String> {
+                        "Title": "Empty Alarm",
+                        "Show": "No",
+                        "Time": "none"
+                      };
+
+                      firestore
+                        .collection("users")
+                        .doc (user_email)
+                        .collection ("alarms")
+                        .doc (alarm_data["Title"])
+                        .set (alarm_data)
+                        .onError((e, _) => print("Error writing document: $e"));
+
+                      final schedule_data = <String, String> {
+                        "Title": "Empty Event",
+                        "Show": "No",
+                        "Date": "none"
+                      };
+
+                      firestore
+                        .collection("users")
+                        .doc (user_email)
+                        .collection ("schedules")
+                        .doc (schedule_data["Title"])
+                        .set (schedule_data)
+                        .onError((e, _) => print("Error writing document: $e"));
+
                     },
                     onError: (e) => print("There was an error in making the account"),
                   );
