@@ -30,7 +30,7 @@ class MyHomePage extends StatefulWidget {
 
 class _AlarmPage extends State<MyHomePage> {
    
-  // creating text ediiting controller to take hour
+  // creating text editing controller to take hour
   // and minute as input
   TextEditingController hourController = TextEditingController();
   TextEditingController minuteController = TextEditingController();
@@ -38,7 +38,7 @@ class _AlarmPage extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('GeeksForGeeks'),
+        title: const Text('DeniellesCodeForReal'),
         centerTitle: true,
       ),
       body: Center(
