@@ -67,6 +67,10 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
                   .doc (user_email)
                   .set (user_data)
                   .onError((e, _) => print("Error writing document: $e"));
+                
+                globals.user_doc = user_email;
+                globals.user_id = user_email;
+                globals.main_id = user_data["Main Email"];
               },
               child: Text("Create Connection"),
             ),

@@ -57,6 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                         var main_email = data["Main Account"];
                         globals.user_doc = firestore.collection("users").doc(main_email);
                         globals.user_id = user_email;
+                        globals.main_id = data["Main Email"];
                         Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => const MainPage()),

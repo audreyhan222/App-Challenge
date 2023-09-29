@@ -14,9 +14,59 @@ class _NotesPageState extends State<NotesPage> {
   @override
   Widget build (BuildContext context) {
     return Scaffold(
-      body: Center (
+      appBar: AppBar(
+        elevation: 0.0,
+        title: Text("FireNotes"),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Text(
+              "Your recent Notes",
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream:
+                    FirebaseFirestore.instance.collection("users").doc(globals.main_id).collection("notes").snapshots(),
+                builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  if (snapshot.hasData) {
+                    print(snapshot);
+                    print(globals.main_id);
+                    return GridView(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                      ),
+                      children: snapshot.data!.docs
+                          .map((note) => noteCard(() {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          NoteReaderScreen(note),
+                                    ));
+                              }, note))
+                          .toList(),
+                    );
+                  }
+                  return Text(
+                    "there's no Notes",
+                  );
+                },
+              ),
+            ),
+            
             TextButton(
               onPressed: () {
                 Navigator.push(
@@ -28,7 +78,78 @@ class _NotesPageState extends State<NotesPage> {
             ),
           ],
         ),
-      )
+      ),
+    );
+  }
+}
+
+Widget noteCard(Function()? onTap, QueryDocumentSnapshot doc) {
+  return InkWell(
+    onTap: onTap,
+    child: Container(
+      padding: EdgeInsets.all(8.0),
+      margin: EdgeInsets.all(8.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            doc["Title"],
+          ),
+          SizedBox(
+            height: 4.0,
+          ),
+          SizedBox(
+            height: 8.0,
+          ),
+          Text(
+            doc["Text"],
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+class NoteReaderScreen extends StatefulWidget {
+  NoteReaderScreen(this.doc, {Key? key}) : super(key: key);
+  QueryDocumentSnapshot doc;
+
+  @override
+  State<NoteReaderScreen> createState() => _NoteReaderScreenState();
+}
+
+class _NoteReaderScreenState extends State<NoteReaderScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              widget.doc["Title"],
+            ),
+            SizedBox(
+              height: 4.0,
+            ),
+            SizedBox(
+              height: 28.0,
+            ),
+            Text(
+              widget.doc["Text"],
+              overflow: TextOverflow.ellipsis,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

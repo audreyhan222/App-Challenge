@@ -80,8 +80,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 final docRef = firestore.collection("users").doc(user_email);
                   docRef.get().then (
                     (DocumentSnapshot doc) async {
-                      globals.user_doc = user_email;
-                      globals.user_id = user_email;;
+                      globals.user_doc = firestore.collection("users").doc(user_email);
+                      globals.user_id = user_email;
+                      globals.main_id = user_email;
                       final notes_data = <String, String> {
                         "Title": "Empty Note",
                         "Show": "No",
