@@ -16,7 +16,7 @@ class _NotesPageState extends State<NotesPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        title: Text("FireNotes"),
+        title: Text("Notes"),
         centerTitle: true,
       ),
       body: Padding(
@@ -25,6 +25,15 @@ class _NotesPageState extends State<NotesPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NewNotePage()),
+                );
+              },
+              child: Text("Add Note"),
+            ),
             Text(
               "Your recent Notes",
             ),
@@ -46,7 +55,7 @@ class _NotesPageState extends State<NotesPage> {
                     print(globals.main_id);
                     return GridView(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
+                        crossAxisCount: 1,
                       ),
                       children: snapshot.data!.docs
                           .map((note) => noteCard(() {
@@ -54,7 +63,7 @@ class _NotesPageState extends State<NotesPage> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          NoteReaderScreen(note),
+                                          NoteDisplay(note),
                                     ));
                               }, note))
                           .toList(),
@@ -65,16 +74,6 @@ class _NotesPageState extends State<NotesPage> {
                   );
                 },
               ),
-            ),
-            
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => NewNotePage()),
-                );
-              },
-              child: Text("Add Note"),
             ),
           ],
         ),
@@ -114,15 +113,15 @@ Widget noteCard(Function()? onTap, QueryDocumentSnapshot doc) {
   );
 }
 
-class NoteReaderScreen extends StatefulWidget {
-  NoteReaderScreen(this.doc, {Key? key}) : super(key: key);
+class NoteDisplay extends StatefulWidget {
+  NoteDisplay(this.doc, {Key? key}) : super(key: key);
   QueryDocumentSnapshot doc;
 
   @override
-  State<NoteReaderScreen> createState() => _NoteReaderScreenState();
+  State<NoteDisplay> createState() => _NoteDisplay();
 }
 
-class _NoteReaderScreenState extends State<NoteReaderScreen> {
+class _NoteDisplay extends State<NoteDisplay> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

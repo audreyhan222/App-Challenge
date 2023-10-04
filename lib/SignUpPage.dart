@@ -124,6 +124,20 @@ class _SignUpPageState extends State<SignUpPage> {
                         .doc (schedule_data["Title"])
                         .set (schedule_data)
                         .onError((e, _) => print("Error writing document: $e"));
+                      
+                      final connections_data = <String, String> {
+                        "Title": "Empty Connection",
+                        "Show": "No",
+                        "Text": "none"
+                      };
+
+                      firestore
+                        .collection("users")
+                        .doc (user_email)
+                        .collection ("connections")
+                        .doc (connections_data["Title"])
+                        .set (connections_data)
+                        .onError((e, _) => print("Error writing document: $e"));
 
                     },
                     onError: (e) => print("There was an error in making the account"),
