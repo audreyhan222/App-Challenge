@@ -11,7 +11,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final firestore = FirebaseFirestore.instance;
   var user_email = "";
   var user_password = "";
   @override
@@ -49,13 +48,13 @@ class _LoginPageState extends State<LoginPage> {
               ),
               ElevatedButton (
                 onPressed: () {
-                  final docRef = firestore.collection("users").doc(user_email);
+                  final docRef = globals.firestore.collection("users").doc(user_email);
                   docRef.get().then (
                     (DocumentSnapshot doc) async {
                       final data = doc.data() as Map<String, dynamic>;
                       if (data["Password"] == user_password) {
                         var main_email = data["Main Account"];
-                        globals.user_doc = firestore.collection("users").doc(main_email);
+                        globals.user_doc = globals.firestore.collection("users").doc(main_email);
                         globals.user_id = user_email;
                         globals.main_id = data["Main Email"];
                         Navigator.push(

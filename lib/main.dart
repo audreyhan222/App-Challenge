@@ -5,6 +5,7 @@ import 'SignUpPage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'globals.dart' as globals;
 //import 'package:firebase_database/firebase_database.dart';
 
 class RealtimeDatabaseInsert extends StatelessWidget {
@@ -19,8 +20,11 @@ class RealtimeDatabaseInsert extends StatelessWidget {
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
+    name: "add_name",
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  final firestore = FirebaseFirestore.instance;
+  globals.firestore = firestore;
   runApp(MyApp());
 }
 

@@ -189,7 +189,7 @@ class NewNotePage extends StatelessWidget {
                   "Show": "Yes",
                   "Text": note_text,
                 };
-                final notes_ref = firestore.collection("users").doc(globals.user_id);
+                final notes_ref = globals.firestore.collection("users").doc(globals.main_id); // change to main_id
                 notes_ref.get().then (
                     (DocumentSnapshot doc) async {
                       final data = doc.data() as Map<String, dynamic>;

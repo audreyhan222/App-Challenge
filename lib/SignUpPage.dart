@@ -10,7 +10,6 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final firestore = FirebaseFirestore.instance;
   var user_email = "";
   var user_password = "";
   var user_name = "";
@@ -58,7 +57,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
             //sign up button
             ElevatedButton (
-              onPressed: () {
+              onPressed: () async {
                 Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const MainPage()),
@@ -71,76 +70,65 @@ class _SignUpPageState extends State<SignUpPage> {
                   "Main Email": user_email,
                 };
 
-                firestore
+                globals.firestore
                   .collection ("users")
                   .doc (user_email)
                   .set (user_data)
                   .onError((e, _) => print("Error writing document: $e"));
+                
+                var docRef = globals.firestore.collection("users").doc(user_email);
+                docRef.get().then (
+                  (DocumentSnapshot doc) async {
+                    //final data = doc.data() as Map<String, dynamic>;
+                    globals.user_doc = globals.firestore.collection("users").doc(user_email);
+                    globals.user_id = user_email;
+                    globals.main_id = user_email;
+                    // globals.user_doc = globals.firestore.collection("users").doc(user_email);
+                    // globals.user_id = user_email;
+                    // globals.main_id = user_email;
 
-                final docRef = firestore.collection("users").doc(user_email);
-                  docRef.get().then (
-                    (DocumentSnapshot doc) async {
-                      globals.user_doc = firestore.collection("users").doc(user_email);
-                      globals.user_id = user_email;
-                      globals.main_id = user_email;
-                      final notes_data = <String, String> {
-                        "Title": "Empty Note",
-                        "Show": "No",
-                        "Text": "none",
-                      };
+                    // final userDocRef = globals.firestore.collection("users").doc(user_email);
+                    // userDocRef.set(user_data).onError((e, _) => print("Error writing document: $e"));
 
-                      firestore
-                        .collection("users")
-                        .doc (user_email)
-                        .collection ("notes")
-                        .doc (notes_data["Title"])
-                        .set (notes_data)
-                        .onError((e, _) => print("Error writing document: $e"));
+                    // Create subcollections
+                    // final notesCollectionRef = userDocRef.collection("notes");
+                    // final alarmsCollectionRef = userDocRef.collection("alarms");
+                    // final schedulesCollectionRef = userDocRef.collection("schedules");
 
-                      final alarm_data = <String, String> {
-                        "Title": "Empty Alarm",
-                        "Show": "No",
-                        "Time": "none"
-                      };
+                    // final notesData = <String, String> {
+                    //   "Title": "Empty Note",
+                    //   "Show": "No",
+                    //   "Text": "none",
+                    // };
 
-                      firestore
-                        .collection("users")
-                        .doc (user_email)
-                        .collection ("alarms")
-                        .doc (alarm_data["Title"])
-                        .set (alarm_data)
-                        .onError((e, _) => print("Error writing document: $e"));
+                    // final alarmData = <String, String> {
+                    //   "Title": "Empty Alarm",
+                    //   "Show": "No",
+                    //   "Time": "none",
+                    // };
 
-                      final schedule_data = <String, String> {
-                        "Title": "Empty Event",
-                        "Show": "No",
-                        "Date": "none"
-                      };
+                    // final scheduleData = <String, String> {
+                    //   "Title": "Empty Event",
+                    //   "Show": "No",
+                    //   "Date": "none",
+                    // };
 
-                      firestore
-                        .collection("users")
-                        .doc (user_email)
-                        .collection ("schedules")
-                        .doc (schedule_data["Title"])
-                        .set (schedule_data)
-                        .onError((e, _) => print("Error writing document: $e"));
-                      
-                      final connections_data = <String, String> {
-                        "Title": "Empty Connection",
-                        "Show": "No",
-                        "Text": "none"
-                      };
+                    // try {
+                    // // Firebase initialization and user data creation code
 
-                      firestore
-                        .collection("users")
-                        .doc (user_email)
-                        .collection ("connections")
-                        .doc (connections_data["Title"])
-                        .set (connections_data)
-                        .onError((e, _) => print("Error writing document: $e"));
+                    // // Create subcollections and documents
+                    //   await notesCollectionRef.add(notesData);
+                    //   await alarmsCollectionRef.add(alarmData);
+                    //   await schedulesCollectionRef.add(scheduleData);
 
-                    },
-                    onError: (e) => print("There was an error in making the account"),
+                    //   // All subcollections and documents were created successfully
+                    //   print("Subcollections and documents created successfully");
+                    // } catch (error) {
+                    //   print("Error creating subcollections and documents: $error");
+                    // }
+                    // },
+                    // onError: (e) => print("There was an error in making the account"),
+                  }
                   );
 
               }, 

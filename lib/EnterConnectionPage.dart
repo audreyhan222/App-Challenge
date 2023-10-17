@@ -9,7 +9,6 @@ class EnterConnectionPage extends StatefulWidget {
 }
 
 class _EnterConnectionPageState extends State<EnterConnectionPage> {
-  final firestore = FirebaseFirestore.instance;
   @override
   Widget build (BuildContext context) {
     var user_email = "";
@@ -62,7 +61,7 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
                   "Main Email": globals.user_id,
                 };
 
-                firestore
+                globals.firestore
                   .collection ("users")
                   .doc (user_email)
                   .set (user_data)

@@ -197,7 +197,7 @@ class NewNotePage extends StatelessWidget {
                       firestore
                         .collection("users")
                         .doc (data["Main Email"])
-                        .collection ("notes")
+                        .collection ("schedule")
                         .doc (note_data["Title"])
                         .set (note_data)
                         .onError((e, _) => print("Error writing document: $e"));
