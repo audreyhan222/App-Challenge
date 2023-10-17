@@ -14,10 +14,12 @@ class _NotesPageState extends State<NotesPage> {
   @override
   Widget build (BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        title: Text("Notes"),
+      appBar: AppBar (
+        title: Text("Notes", style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 25)),
         centerTitle: true,
+        backgroundColor: Color.fromRGBO(255, 241, 230, 1),
+        toolbarHeight: 80,
+        toolbarOpacity: 1.0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

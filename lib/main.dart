@@ -7,6 +7,8 @@ import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as globals;
 //import 'package:firebase_database/firebase_database.dart';
+import 'package:getwidget/getwidget.dart';
+
 
 class RealtimeDatabaseInsert extends StatelessWidget {
   RealtimeDatabaseInsert({Key? key}) : super(key: key);
@@ -64,29 +66,51 @@ class _MyHomePageState extends State<MyHomePage> {
       title: 'Flutter layout demo',
       home: Scaffold(
         appBar: AppBar(
-          toolbarHeight: 300,
-          title: const Text('Flutter layout demo'),
+          toolbarHeight: 120,
+          title: const Text('App Name', style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 40)),
+          backgroundColor: Color.fromRGBO(255, 241, 230, 1),
+          centerTitle: true,
         ),
         body: Center(
           child: Column (
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const LoginPage()),
-                  );
-                },
-                child: Text("Login"),
+              Container (
+                height: 300,
               ),
-              ElevatedButton (
-                onPressed: () {
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const SignUpPage()),
-                  );
-                },
-                child: Text("Sign In")
+              Container (
+                height: 60,
+                width: 300,
+                child:
+                  GFButton (
+                    shape: GFButtonShape.pills,
+                    color: Color.fromRGBO(203, 153, 126, 1),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const LoginPage()),
+                      );
+                    },
+                    child: Text("Login", style: TextStyle(fontSize: 25, fontFamily: "", color: Colors.white,)),
+                  ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                height: 60,
+                width: 300,
+                child: GFButton (
+                  shape: GFButtonShape.pills,
+                  type: GFButtonType.outline,
+                  color: Color.fromRGBO(203, 153, 126, 1),
+                  onPressed: () {
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const SignUpPage()),
+                    );
+                  },
+                  child: Text("Sign In", style: TextStyle(fontSize: 25)),
+                ),
               ),
             ]
           ),

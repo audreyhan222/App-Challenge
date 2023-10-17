@@ -161,6 +161,13 @@ class NewNotePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar (
+        title: Text("Schedule", style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 25)),
+        centerTitle: true,
+        backgroundColor: Color.fromRGBO(255, 241, 230, 1),
+        toolbarHeight: 80,
+        toolbarOpacity: 1.0,
+      ),
       body: Center(
         child: Column (
           children: [
@@ -176,7 +183,7 @@ class NewNotePage extends StatelessWidget {
             TextField(
               obscureText: false,
               decoration: InputDecoration(
-                labelText: 'Enter Notes',
+                labelText: 'Enter Event',
               ),
               onChanged: (value) {
                 note_text = value;
@@ -206,7 +213,7 @@ class NewNotePage extends StatelessWidget {
                 );
                 Navigator.pop(context);
               },
-              child: Text("Create Note")
+              child: Text("Create Event")
             ),
           ],
         ),
