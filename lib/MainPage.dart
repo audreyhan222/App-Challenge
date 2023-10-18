@@ -20,6 +20,8 @@ class _MainPageState extends State<MainPage> {
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
         toolbarOpacity: 1.0,
+        elevation: 2.0,
+        shadowColor: Colors.black,
       ),
       body: Column (
         children: [

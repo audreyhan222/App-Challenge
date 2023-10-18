@@ -27,37 +27,63 @@ class _SignUpPageState extends State<SignUpPage> {
         child: Column (
           children: [
             SizedBox(height: 30),
-            TextField(
-              obscureText: false,
-              decoration: InputDecoration (
-                border: OutlineInputBorder(),
-                labelText: 'Enter Name'
+            Container (
+              height: 70,
+              width: 340,
+              child: TextField (
+                obscureText: false,
+                decoration: InputDecoration (
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: BorderSide(color: Color.fromRGBO(203, 153, 126, 2)),
+                  ),
+                  hintStyle: TextStyle(color: Color.fromRGBO(203, 153, 126, 2)),
+                  hintText: 'Enter name'
+                ),
+                onChanged: (value) {
+                  user_name = value;
+                }
               ),
-              onChanged: (value) {
-                user_name = value;
-              }
             ),
-            TextField(
-              obscureText: false,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Enter Email Address',
-              ),
-              onChanged: (value) {
-                user_email = value;
-              },
-            ), 
-            TextField(
-              obscureText: true,
-              decoration: InputDecoration (
-                border: OutlineInputBorder(),
-                labelText: 'Create Password'
-              ),
-              onChanged: (value) {
-                user_password = value;
-              }
+            SizedBox(height: 10),
+            Container (
+              height: 70,
+              width: 340,
+              child: TextField (
+                obscureText: false,
+                decoration: InputDecoration(
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: BorderSide(color: Color.fromRGBO(203, 153, 126, 2)),
+                  ),
+                  hintStyle: TextStyle(color: Color.fromRGBO(203, 153, 126, 2)),
+                  hintText: 'Enter email address',
+                ),
+                onChanged: (value) {
+                  user_email = value;
+                },
+              ), 
             ),
-
+            SizedBox(height: 10),
+            Container (
+              height: 70,
+              width: 340,
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration (
+                  enabledBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                    borderSide: BorderSide(color: Color.fromRGBO(203, 153, 126, 2)),
+                  ),
+                  hintStyle: TextStyle(color: Color.fromRGBO(203, 153, 126, 2)),
+                  hintText: 'Create password'
+                ),
+                onChanged: (value) {
+                  user_password = value;
+                }
+              ),
+            ),
+            SizedBox(height:20),
             //sign up button
             Container(
               height: 60,
@@ -95,6 +121,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   globals.user_doc = globals.firestore.collection("users").doc(user_email);
                   globals.user_id = user_email;
                   globals.main_id = user_email;
+                  globals.user_name = user_name;
                   
                   // docRef.get().then (
                   //   (DocumentSnapshot doc) async {

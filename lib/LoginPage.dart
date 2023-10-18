@@ -23,32 +23,52 @@ class _LoginPageState extends State<LoginPage> {
         centerTitle: true,
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
+        elevation: 2.0,
         toolbarOpacity: 1.0,
+        shadowColor: Colors.black,
       ),
       body: Center(
         child: Column (
           children: [
               SizedBox(height:20),
-              TextField(
-                obscureText: false,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Enter Email Address',
-                ),
-                onChanged: (value) {
-                  user_email = value;
-                },
-              ), 
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration (
-                  border: OutlineInputBorder(),
-                  labelText: 'Enter Password'
-                ),
-                onChanged: (value) {
-                  user_password = value;
-                }
+              Container(
+                height: 70,
+                width: 350,
+                child: TextField(
+                  obscureText: false,
+                  decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(color: Color.fromRGBO(203, 153, 126, 2)),
+                    ),
+                    hintStyle: TextStyle(color: Color.fromRGBO(203, 153, 126, 2)),
+                    hintText: 'Enter email address',
+                  ),
+                  onChanged: (value) {
+                    user_email = value;
+                  },
+                ), 
               ),
+              SizedBox (height: 10),
+              Container (
+                height: 70,
+                width: 350,
+                child: TextField(
+                  obscureText: true,
+                  decoration: InputDecoration (
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(color: Color.fromRGBO(203, 153, 126, 2)),
+                    ),
+                    hintStyle: TextStyle(color: Color.fromRGBO(203, 153, 126, 2)),
+                    hintText: 'Enter password'
+                  ),
+                  onChanged: (value) {
+                    user_password = value;
+                  }
+                ),
+              ),
+              SizedBox(height: 20),
               Container(
                 height: 60,
                 width: 300,
@@ -65,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                           globals.user_doc = globals.firestore.collection("users").doc(main_email);
                           globals.user_id = user_email;
                           globals.main_id = data["Main Email"];
+                          globals.user_name = data["Username"];
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => const MainPage()),
