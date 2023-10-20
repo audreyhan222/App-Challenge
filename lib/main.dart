@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 120,
-          title: const Text('App Name', style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 40)),
+          title: Text('App Name', style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 45)),
           backgroundColor: Color.fromRGBO(255, 241, 230, 1),
           centerTitle: true,
         ),
@@ -91,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         MaterialPageRoute(builder: (context) => const LoginPage()),
                       );
                     },
-                    child: Text("Login", style: TextStyle(fontSize: 25, fontFamily: "", color: Colors.white,)),
+                    child: Text("Login", style: GoogleFonts.merriweather(color: Colors.white, fontSize: 25)),
                   ),
               ),
               SizedBox(
@@ -110,7 +110,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       MaterialPageRoute(builder: (context) => const SignUpPage()),
                     );
                   },
-                  child: Text("Sign In", style: TextStyle(fontSize: 25)),
+                  child: Text("Sign In", style: GoogleFonts.merriweather(fontSize: 25)),
                 ),
               ),
             ]

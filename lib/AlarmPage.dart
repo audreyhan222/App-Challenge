@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class AlarmPage extends StatefulWidget {
@@ -20,11 +21,13 @@ class _AlarmPageState extends State<AlarmPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar (
-        title: Text("Alarms", style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 25)),
+        title: Text("Alarms", style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 30)),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
         toolbarOpacity: 1.0,
+        shadowColor: Colors.black,
+        elevation: 2.0,
       ),
       body: Center(
           child: Column(children: <Widget>[

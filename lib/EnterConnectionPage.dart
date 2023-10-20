@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as globals;
 import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EnterConnectionPage extends StatefulWidget {
   const EnterConnectionPage({super.key});
@@ -17,7 +18,7 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
     var user_name = "";
     return Scaffold (
       appBar: AppBar (
-        title: Text("Add Connection", style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 25)),
+        title: Text("Add Connection", style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 30)),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
@@ -99,7 +100,7 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
                 globals.user_id = user_email;
                 globals.main_id = user_data["Main Email"];
               },
-              child: Text("Create Connection"),
+              child: Text("Create Connection", style: GoogleFonts.merriweather(color: Colors.white, fontSize: 20)),
             ),
             ),
           ],

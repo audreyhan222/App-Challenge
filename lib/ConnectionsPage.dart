@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as globals;
 import 'EnterConnectionPage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ConnectionsPage extends StatefulWidget {
   const ConnectionsPage({Key key = const Key("")}) : super(key: key);
@@ -20,12 +21,13 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar (
-        title: Text("Connections", style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 25)),
+        title: Text("Connections", style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 30)),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
         toolbarOpacity: 1.0,
         shadowColor: Colors.black,
+        elevation: 2.0,
       ),
       body: Center(
         

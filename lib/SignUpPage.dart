@@ -3,6 +3,7 @@ import 'MainPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as globals;
 import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -18,7 +19,7 @@ class _SignUpPageState extends State<SignUpPage> {
   Widget build (BuildContext context) {
     return Scaffold(
       appBar: AppBar (
-        title: Text("Sign In", style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 25)),
+        title: Text("Sign In", style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 30)),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
@@ -135,7 +136,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   // );
 
                 }, 
-                child: Text("Sign Up")
+                child: Text("Sign Up", style: GoogleFonts.merriweather(color: Colors.white, fontSize: 20))
               ),
             ),
             

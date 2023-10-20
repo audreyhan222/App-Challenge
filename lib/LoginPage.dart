@@ -3,6 +3,7 @@ import 'MainPage.dart';
 import 'globals.dart' as globals;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:getwidget/getwidget.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -19,7 +20,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build (BuildContext context){
     return Scaffold(
       appBar: AppBar (
-        title: Text("Login", style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 25)),
+        title: Text("Login", style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 30)),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
@@ -95,7 +96,7 @@ class _LoginPageState extends State<LoginPage> {
                       onError: (e) => print("User email or password is incorrect."),
                     );
                   }, 
-                  child: Text("Login")),
+                  child: Text("Login", style: GoogleFonts.merriweather(color: Colors.white, fontSize: 20))),
               ),
             ]
           ),
