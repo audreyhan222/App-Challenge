@@ -20,6 +20,8 @@ class _NotesPageState extends State<NotesPage> {
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
         toolbarOpacity: 1.0,
+        elevation: 2.0,
+        shadowColor: Colors.black,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -162,6 +164,15 @@ class NewNotePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar (
+        title: Text("Add Note", style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 25)),
+        centerTitle: true,
+        backgroundColor: Color.fromRGBO(255, 241, 230, 1),
+        toolbarHeight: 80,
+        toolbarOpacity: 1.0,
+        elevation: 2.0,
+        shadowColor: Colors.black,
+      ),
       body: Center(
         child: Column (
           children: [

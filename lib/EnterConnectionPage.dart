@@ -21,12 +21,16 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
         centerTitle: true,
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
-        elevation: 4.0,
+        elevation: 2.0,
+        shadowColor: Colors.black,
       ),
       body: Center (
         child: Column (
           children: [
-            TextField(
+            Container (
+              height: 70,
+              width: 350,
+              child: TextField(
               obscureText: false,
               decoration: InputDecoration (
                 border: OutlineInputBorder(),
@@ -36,7 +40,12 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
                 user_name = value;
               }
             ),
-            TextField(
+            ),
+
+            Container(
+              height: 70,
+              width: 350,
+              child: TextField(
               obscureText: false,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
@@ -45,8 +54,13 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
               onChanged: (value) {
                 user_email = value;
               },
-            ), 
-            TextField(
+              ), 
+            ),
+
+            Container(
+              height: 70,
+              width: 350,
+              child: TextField(
               obscureText: true,
               decoration: InputDecoration (
                 border: OutlineInputBorder(),
@@ -56,12 +70,15 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
                 user_password = value;
               }
             ),
+            ),
 
             //sign up button
             Container(
               height: 60,
               width: 300,
               child: GFButton (
+              shape: GFButtonShape.pills,
+              color: Color.fromRGBO(203, 153, 126, 1),
               onPressed: () {
                 Navigator.pop(context);
                 

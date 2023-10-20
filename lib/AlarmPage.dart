@@ -9,26 +9,8 @@ class AlarmPage extends StatefulWidget {
   State<AlarmPage> createState() => _AlarmPageState();
 }
 
+
 class _AlarmPageState extends State<AlarmPage> {
-  @override
-  Widget build (BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Alarm Clock',
-      theme: ThemeData(
-        primarySwatch: Colors.green,
-      ),
-      home: MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  State<MyHomePage> createState() => _AlarmPage();
-}
-
-class _AlarmPage extends State<MyHomePage> {
    
   // creating text editing controller to take hour
   // and minute as input

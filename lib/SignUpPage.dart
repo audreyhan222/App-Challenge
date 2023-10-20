@@ -22,6 +22,8 @@ class _SignUpPageState extends State<SignUpPage> {
         centerTitle: true,
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
+        elevation: 2.0,
+        shadowColor: Colors.black,
       ),
       body: Center (
         child: Column (

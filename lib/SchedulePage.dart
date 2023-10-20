@@ -15,10 +15,14 @@ class _SchedulePageState extends State<SchedulePage> {
   @override
   Widget build (BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0.0,
-        title: Text("Schedule"),
+      appBar: AppBar (
+        title: Text("Add Event", style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 25)),
         centerTitle: true,
+        backgroundColor: Color.fromRGBO(255, 241, 230, 1),
+        toolbarHeight: 80,
+        toolbarOpacity: 1.0,
+        elevation: 2.0,
+        shadowColor: Colors.black,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -30,13 +34,13 @@ class _SchedulePageState extends State<SchedulePage> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NewNotePage()),
+                  MaterialPageRoute(builder: (context) => NewEventPage()),
                 );
               },
               child: Text("Add Event"),
             ),
             Text(
-              "Your recent Notes",
+              "Your upcoming events",
             ),
             SizedBox(
               height: 20.0,
@@ -59,12 +63,12 @@ class _SchedulePageState extends State<SchedulePage> {
                         crossAxisCount: 1,
                       ),
                       children: snapshot.data!.docs
-                          .map((note) => noteCard(() {
+                          .map((note) => eventCard(() {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) =>
-                                          NoteDisplay(note),
+                                          EventDisplay(note),
                                     ));
                               }, note))
                           .toList(),
@@ -83,7 +87,7 @@ class _SchedulePageState extends State<SchedulePage> {
   }
 }
 
-Widget noteCard(Function()? onTap, QueryDocumentSnapshot doc) {
+Widget eventCard(Function()? onTap, QueryDocumentSnapshot doc) {
   return InkWell(
     onTap: onTap,
     child: Container(
@@ -114,15 +118,15 @@ Widget noteCard(Function()? onTap, QueryDocumentSnapshot doc) {
   );
 }
 
-class NoteDisplay extends StatefulWidget {
-  NoteDisplay(this.doc, {Key? key}) : super(key: key);
+class EventDisplay extends StatefulWidget {
+  EventDisplay(this.doc, {Key? key}) : super(key: key);
   QueryDocumentSnapshot doc;
 
   @override
-  State<NoteDisplay> createState() => _NoteDisplay();
+  State<EventDisplay> createState() => _EventDisplay();
 }
 
-class _NoteDisplay extends State<NoteDisplay> {
+class _EventDisplay extends State<EventDisplay> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -154,7 +158,7 @@ class _NoteDisplay extends State<NoteDisplay> {
   }
 }
 
-class NewNotePage extends StatelessWidget {
+class NewEventPage extends StatelessWidget {
   var note_title = "Title";
   var note_text = "";
   final firestore = FirebaseFirestore.instance;
@@ -162,11 +166,13 @@ class NewNotePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar (
-        title: Text("Schedule", style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 25)),
+        title: Text("Add Event", style: TextStyle(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 25)),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
         toolbarOpacity: 1.0,
+        elevation: 2.0,
+        shadowColor: Colors.black,
       ),
       body: Center(
         child: Column (
