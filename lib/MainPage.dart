@@ -32,7 +32,7 @@ class _MainPageState extends State<MainPage> {
                 height: 250,
                 width: 180,
                 child: Padding (
-                  padding: const EdgeInsets.fromLTRB(10, 50, 5, 5),
+                  padding: const EdgeInsets.fromLTRB(10, 60, 5, 5),
                   child: ElevatedButton (
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromRGBO(183, 183, 164, 1),
@@ -90,7 +90,7 @@ class _MainPageState extends State<MainPage> {
                 height: 350,
                 width: 180,
                 child: Padding (
-                  padding: EdgeInsets.fromLTRB(5, 50, 10, 5),
+                  padding: EdgeInsets.fromLTRB(5, 60, 10, 5),
                   child: ElevatedButton (
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromRGBO(221, 190, 169, 1),

@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as globals;
 import 'EnterConnectionPage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:getwidget/getwidget.dart';
 
 class ConnectionsPage extends StatefulWidget {
   const ConnectionsPage({Key key = const Key("")}) : super(key: key);
@@ -21,9 +22,9 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar (
-        title: Text("Connections", style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 30)),
+        title: Text("Connections", style: GoogleFonts.kanit(color: Color.fromRGBO(165, 165, 141, 1), fontSize: 30)),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(255, 241, 230, 1),
+        backgroundColor: Color.fromRGBO(240, 239, 235, 1),
         toolbarHeight: 80,
         toolbarOpacity: 1.0,
         shadowColor: Colors.black,
@@ -33,6 +34,22 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
         
         child: Column(
           children: [
+            SizedBox(height: 30),
+            Container (
+              height: 60,
+              width: 300,
+              child: GFButton(
+                shape: GFButtonShape.pills,
+                color: Color.fromRGBO(183, 183, 164, 1),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const EnterConnectionPage()),
+                  );
+                },
+                child: Text("Add a Connection", style: GoogleFonts.merriweather(color: Colors.white, fontSize: 20)),
+              ),
+            ),
             Expanded(
               child: StreamBuilder(
                 stream: firestore.collection("users").doc(globals.user_name).collection("messages").snapshots(),
@@ -56,15 +73,6 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
                   return ListView(children: messageWidgets);
                 },
               ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const EnterConnectionPage()),
-                );
-              },
-              child: Text("Add a Connection"),
             ),
             Padding(
               padding: const EdgeInsets.all(2.0),

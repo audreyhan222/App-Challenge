@@ -42,7 +42,6 @@ class _LoginPageState extends State<LoginPage> {
                       borderRadius: BorderRadius.circular(20.0),
                       borderSide: BorderSide(color: Color.fromRGBO(203, 153, 126, 2)),
                     ),
-                    hintStyle: TextStyle(color: Color.fromRGBO(203, 153, 126, 2)),
                     hintText: 'Enter email address',
                   ),
                   onChanged: (value) {

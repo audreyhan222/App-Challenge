@@ -17,7 +17,7 @@ class _SchedulePageState extends State<SchedulePage> {
   Widget build (BuildContext context) {
     return Scaffold(
       appBar: AppBar (
-        title: Text("Add Event", style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 30)),
+        title: Text("Schedule", style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 30)),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
