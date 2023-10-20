@@ -4,7 +4,6 @@ import 'NotesPage.dart';
 import 'SchedulePage.dart';
 import 'ConnectionsPage.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:getwidget/getwidget.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -33,9 +32,14 @@ class _MainPageState extends State<MainPage> {
                 height: 250,
                 width: 180,
                 child: Padding (
-                  padding: const EdgeInsets.fromLTRB(10, 40, 5, 5),
-                  child: GFButton (
-                    color: Colors.blue,
+                  padding: const EdgeInsets.fromLTRB(10, 50, 5, 5),
+                  child: ElevatedButton (
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(183, 183, 164, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -45,7 +49,7 @@ class _MainPageState extends State<MainPage> {
                     child: Column (
                       children: [
                         Icon(null),
-                        Text ("Alarm"),
+                        Text ("Alarm", style: GoogleFonts.kanit(color: Colors.white, fontSize: 25)),
                       ]
                     )
                   ),
@@ -56,8 +60,13 @@ class _MainPageState extends State<MainPage> {
                 width: 180,
                 child: Padding (
                   padding: const EdgeInsets.fromLTRB(10.0, 5, 5, 10),
-                  child: GFButton (
-                    color: Colors.blue,
+                  child: ElevatedButton (
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(221, 190, 169, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
                     onPressed: () {
                       Navigator.push (
                         context,
@@ -67,7 +76,7 @@ class _MainPageState extends State<MainPage> {
                     child: Column (
                       children: [
                         Icon(null),
-                        Text("Schedule"),
+                        Text("Schedule", style: GoogleFonts.kanit(color: Colors.white, fontSize: 25)),
                       ]
                     ),
                   ),
@@ -81,10 +90,14 @@ class _MainPageState extends State<MainPage> {
                 height: 350,
                 width: 180,
                 child: Padding (
-                  padding: EdgeInsets.fromLTRB(5, 40, 10, 5),
-                  child: GFButton (
-                    color: Colors.pink,
-                    shape: GFButtonShape.standard,
+                  padding: EdgeInsets.fromLTRB(5, 50, 10, 5),
+                  child: ElevatedButton (
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(221, 190, 169, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
                     onPressed: () {
                       Navigator.push (
                         context,
@@ -94,7 +107,7 @@ class _MainPageState extends State<MainPage> {
                     child: Column(
                       children: [
                         Icon(null),
-                        Text("Notes"),
+                        Text("Notes", style: GoogleFonts.kanit(color: Colors.white, fontSize: 25)),
                       ]
                     ),
                   ),
@@ -105,9 +118,13 @@ class _MainPageState extends State<MainPage> {
                 width: 180,
                 child: Padding (
                   padding: EdgeInsets.fromLTRB(5, 5, 10, 10),
-                  child: GFButton (
-                    color: Colors.pink,
-                    shape: GFButtonShape.standard,
+                  child: ElevatedButton (
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(183, 183, 164, 1),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                    ),
                     onPressed: () {
                       Navigator.push (
                         context,
@@ -117,7 +134,7 @@ class _MainPageState extends State<MainPage> {
                     child: Column(
                       children: [
                         Icon(null),
-                        Text("Connections")
+                        Text("Connections", style: GoogleFonts.kanit(color: Colors.white, fontSize: 20))
                       ]
                     ),
                   ),
