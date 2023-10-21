@@ -4,6 +4,8 @@ import 'NotesPage.dart';
 import 'SchedulePage.dart';
 import 'ConnectionsPage.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
+import 'globals.dart' as globals;
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -14,6 +16,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build (BuildContext context) {
+    if (globals.user_id == globals.main_id){
+      //Loop through the alarms subcollection and basically add any alarms that have "set" as false and the make "set" true
+      //FlutterAlarmClock.createAlarm(hour: hour, minutes: minutes);
+    }
     return Scaffold(
       appBar: AppBar (
         title: Text("Home", style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 30)),

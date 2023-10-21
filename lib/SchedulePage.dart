@@ -4,6 +4,7 @@ import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'globals.dart' as globals;
 import 'package:google_fonts/google_fonts.dart';
+import 'package:getwidget/getwidget.dart';
 
 class SchedulePage extends StatefulWidget {
   const SchedulePage({super.key});
@@ -28,20 +29,23 @@ class _SchedulePageState extends State<SchedulePage> {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          //mainAxisAlignment: MainAxisAlignment.start,
+          //crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => NewEventPage()),
-                );
-              },
-              child: Text("Add Event"),
-            ),
-            Text(
-              "Your upcoming events",
+            Container(
+              height: 60,
+              width: 300,
+              child: GFButton(
+                shape: GFButtonShape.pills,
+                color: Color.fromRGBO(203, 153, 126, 1),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => NewEventPage()),
+                  );
+                },
+                child: Text("Add Event", style: GoogleFonts.merriweather(color: Colors.white, fontSize: 25)),
+              ),
             ),
             SizedBox(
               height: 20.0,
@@ -96,6 +100,18 @@ Widget eventCard(Function()? onTap, QueryDocumentSnapshot doc) {
       margin: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8.0),
+        color: Color.fromRGBO(255, 241, 230, 1),
+        boxShadow: [
+          BoxShadow(
+            color: Color.fromRGBO(203, 153, 126, 1),
+            offset: const Offset(
+              2.0,
+              2.0,
+            ),
+            blurRadius: 3.0,
+            spreadRadius: 0.2,
+          ),
+        ]
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

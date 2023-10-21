@@ -150,25 +150,30 @@ class _NoteDisplay extends State<NoteDisplay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0.0,
+        elevation: 2.0,
+        title: Text(widget.doc["Title"], style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 30)),
+        centerTitle: true,
+        backgroundColor: Color.fromRGBO(255, 241, 230, 1),
+        toolbarHeight: 80,
+        toolbarOpacity: 1.0,
+        shadowColor: Colors.black,
+        
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              widget.doc["Title"],
-            ),
             SizedBox(
-              height: 4.0,
+              height: 20.0,
             ),
-            SizedBox(
-              height: 28.0,
-            ),
-            Text(
-              widget.doc["Text"],
-              overflow: TextOverflow.ellipsis,
+            Expanded (
+              child: Text(
+                widget.doc["Text"],
+                style: TextStyle(color: Color.fromRGBO(203, 153, 126, 2), fontSize: 20),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 100,
+              ),
             ),
           ],
         ),
@@ -256,6 +261,7 @@ class NewNotePage extends StatelessWidget {
                 child: Text("Create Note", style: GoogleFonts.merriweather(color: Colors.white, fontSize: 20))
               ),
             ),
+            SizedBox(height: 10),
           ],
         ),
       ),

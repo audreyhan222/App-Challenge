@@ -74,6 +74,18 @@ class _AlarmPageState extends State<AlarmPage> {
               style: TextStyle(fontSize: 20.0),
             ),
             onPressed: () {
+
+//           ADD STUFF FOR FIREBASE HERE
+//           reference notes page
+//           make array to hold info about alarm
+//           ex) hour, minutes, am/pm, set (true or false, indicating whether the alarm has been added to the phone)
+//           reference notes page on how to add that to the firebase
+//           title of alarm doc can just be the time or smth
+//           just change the parts where it says notes collection to alarm collection
+// 
+// 
+
+
               int hour;
               int minutes;
               hour = int.parse(hourController.text);
@@ -96,45 +108,6 @@ class _AlarmPageState extends State<AlarmPage> {
             style: TextStyle(fontSize: 20.0),
           ),
         ),
-        Container(
-          margin: const EdgeInsets.all(25),
-          child: TextButton(
-              child: const Text(
-                'Create timer',
-                style: TextStyle(fontSize: 20.0),
-              ),
-              onPressed: () {
-                int minutes;
-                minutes = (int.parse(minuteController.text)) * 60;
-                 
-                // create timer
-                FlutterAlarmClock.createTimer(length: minutes);
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AboutDialog(
-                        children: [
-                          Center(
-                            child: Text("Timer is set",
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold)),
-                          )
-                        ],
-                      );
-                    });
-              }),
-        ),
-        ElevatedButton(
-          onPressed: () {
-             
-            // show timers
-            FlutterAlarmClock.showTimers();
-          },
-          child: Text(
-            "Show Timers",
-            style: TextStyle(fontSize: 17),
-          ),
-        )
       ])),
     );
   }

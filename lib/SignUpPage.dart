@@ -36,7 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: TextField (
                 obscureText: false,
                 decoration: InputDecoration (
-                  enabledBorder: OutlineInputBorder(
+                  border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0),
                     borderSide: BorderSide(color: Color.fromRGBO(203, 153, 126, 2)),
                   ),
@@ -55,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: TextField (
                 obscureText: false,
                 decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
+                  border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0),
                     borderSide: BorderSide(color: Color.fromRGBO(203, 153, 126, 2)),
                   ),
@@ -74,7 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
               child: TextField(
                 obscureText: true,
                 decoration: InputDecoration (
-                  enabledBorder: OutlineInputBorder(
+                  border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0),
                     borderSide: BorderSide(color: Color.fromRGBO(203, 153, 126, 2)),
                   ),

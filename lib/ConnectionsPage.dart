@@ -34,7 +34,111 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
         
         child: Column(
           children: [
-            SizedBox(height: 30),
+            SizedBox(height: 20),
+            Expanded(
+              child: StreamBuilder(
+                stream: firestore.collection("users").doc(globals.main_id).collection("messages").snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                  var messages = snapshot.data!.docs;
+                  List<Widget> messageWidgets = [];
+                  for (var message in messages) {
+                    var data = message.data() as Map<String, dynamic>;
+                    var userName = message.id;
+                    var text = data["text"];
+
+                    messageWidgets.add(
+                      Container (
+                        child: Column(
+                          children: [
+                            SizedBox(height: 10),
+                            Row (
+                            children: [
+                              SizedBox(width:5),
+                              Container (
+                                height: 60,
+                                width: 110,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                    color: Color.fromRGBO(240, 239, 235,1),
+                                    // border: Border.all(
+                                    //   color: Color.fromRGBO(165, 165, 141,1),
+                                    // )
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                  userName,
+                                  style: GoogleFonts.merriweather(color: Color.fromRGBO(110, 110, 93, 0.996), fontSize: 15),
+                                ),
+                                ),
+                              ),
+                              SizedBox(width: 10),
+                              Container (
+                                height: 60,
+                                width: 230,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                                  border: Border.all(
+                                    color: Color.fromRGBO(165, 165, 141,1),
+                                  ),
+                                ),
+                                child: 
+                                  Container(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      text,
+                                      style: GoogleFonts.merriweather(color: Color.fromRGBO(110, 110, 93, 0.996), fontSize: 15),
+                                    ),
+                                  ),
+                              ),
+                            ]
+                          ),],
+                        ),
+                      ),
+                      // ListTile(
+                      //   title: Text(userName),
+                      //   subtitle: Text(text),
+                      // ),
+                    );
+                  }
+                  return ListView(children: messageWidgets);
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(2.0),
+              child: Container(
+                height: 70,
+                width: 320,
+                child: TextField(
+                  controller: messageController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide(color: Colors.blue),
+                    ),
+                    hintStyle: TextStyle(color: Color.fromRGBO(165, 165, 141, 2)),
+                    hintText: "Add a message",
+                  ),
+                ),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                final message = messageController.text;
+                final userName = globals.user_name;
+                // Add the message to Firestore subcollection
+                addMessageToFirestore(message, userName);
+                messageController.clear();
+                setState(() {
+                  ConnectionsPage();
+                });
+              },
+              child: Text("Submit Message"),
+            ),
             Container (
               height: 60,
               width: 300,
@@ -50,56 +154,7 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
                 child: Text("Add a Connection", style: GoogleFonts.merriweather(color: Colors.white, fontSize: 20)),
               ),
             ),
-            Expanded(
-              child: StreamBuilder(
-                stream: firestore.collection("users").doc(globals.user_name).collection("messages").snapshots(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                  var messages = snapshot.data!.docs;
-                  List<Widget> messageWidgets = [];
-                  for (var message in messages) {
-                    var data = message.data() as Map<String, dynamic>;
-                    var userName = message.id;
-                    var text = data["text"];
-                    messageWidgets.add(
-                      ListTile(
-                        title: Text(userName),
-                        subtitle: Text(text),
-                      ),
-                    );
-                  }
-                  return ListView(children: messageWidgets);
-                },
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(2.0),
-              child: TextField(
-                controller: messageController,
-                decoration: InputDecoration(
-                  labelText: "Add a message",
-                ),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                final message = messageController.text;
-                final userName = globals.user_name; // Assuming you have the user's name in globals.user_name
-// Add the message to Firestore subcollection
-                addMessageToFirestore(message, userName);
-
-                setState(() {
-                  displayedMessage = message;
-                });
-              },
-              child: Text("Submit Message"),
-            ),
-            Text(
-              "Entered Message: $displayedMessage",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
+            SizedBox(height: 20),
           ]
         ),
           
