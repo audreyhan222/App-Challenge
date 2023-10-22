@@ -2,7 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
 
 class AlarmPage extends StatefulWidget {
   const AlarmPage({super.key});
@@ -17,6 +21,41 @@ class _AlarmPageState extends State<AlarmPage> {
   // and minute as input
   TextEditingController hourController = TextEditingController();
   TextEditingController minuteController = TextEditingController();
+
+  // Future<void> addAlarm(int hour, int minutes) async {
+  //   final CollectionReference alarms = FirebaseFirestore.instance.collection('alarms');
+  //     await alarms.add({
+  //     'hour': hour,
+  //     'minutes': minutes,
+  //   });
+  // }
+
+  // // Retrieve alarms
+  // Stream<QuerySnapshot> getAlarms() {
+  //   return FirebaseFirestore.instance.collection('alarms').snapshots();
+  // }
+
+  CollectionReference alarmCollection = firestore.collection('alarms');
+
+  Future<void> addAlarmToFirestore(TimeOfDay alarm) async {
+  User? user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    await alarmCollection.add({
+      'alarm': alarm,
+      'userId': user.uid,
+    });
+  }
+}
+
+Stream<QuerySnapshot> getUserAlarms() {
+  User? user = FirebaseAuth.instance.currentUser;
+  if (user != null) {
+    return alarmCollection.where('userId', isEqualTo: user.uid).snapshots();
+  } else {
+    return Stream.empty();
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,12 +123,14 @@ class _AlarmPageState extends State<AlarmPage> {
 //           just change the parts where it says notes collection to alarm collection
 // 
 // 
-
-
               int hour;
               int minutes;
               hour = int.parse(hourController.text);
               minutes = int.parse(minuteController.text);
+              // addAlarm(hour, minutes);
+
+              TimeOfDay alarm = TimeOfDay(hour: hour, minute: minutes);
+              addAlarmToFirestore(alarm);
                
               // creating alarm after converting hour
               // and minute into integer
@@ -99,8 +140,9 @@ class _AlarmPageState extends State<AlarmPage> {
         ),
         ElevatedButton(
           onPressed: () {
-             
             // show alarm
+            // getAlarms();
+            getUserAlarms();
             FlutterAlarmClock.showAlarms();
           },
           child: const Text(
