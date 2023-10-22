@@ -22,7 +22,7 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar (
-        title: Text("Connections", style: GoogleFonts.kanit(color: Color.fromRGBO(165, 165, 141, 1), fontSize: 30)),
+        title: Text("Connections", style: GoogleFonts.kanit(color: Color.fromRGBO(119, 119, 100, 1), fontSize: 30)),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(240, 239, 235, 1),
         toolbarHeight: 80,
@@ -63,7 +63,7 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.all(Radius.circular(15.0)),
-                                    color: Color.fromRGBO(240, 239, 235,1),
+                                    color: Color.fromRGBO(204, 204, 182, 1),
                                     // border: Border.all(
                                     //   color: Color.fromRGBO(165, 165, 141,1),
                                     // )
@@ -71,7 +71,7 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
                                   alignment: Alignment.center,
                                   child: Text(
                                   userName,
-                                  style: GoogleFonts.merriweather(color: Color.fromRGBO(110, 110, 93, 0.996), fontSize: 15),
+                                  style: GoogleFonts.merriweather(color: Color.fromRGBO(22, 22, 18, 0.988), fontSize: 15),
                                 ),
                                 ),
                               ),
@@ -90,7 +90,7 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
                                     alignment: Alignment.center,
                                     child: Text(
                                       text,
-                                      style: GoogleFonts.merriweather(color: Color.fromRGBO(110, 110, 93, 0.996), fontSize: 15),
+                                      style: GoogleFonts.merriweather(color: Color.fromRGBO(119, 119, 100, 0.996), fontSize: 15),
                                     ),
                                   ),
                               ),
@@ -98,10 +98,6 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
                           ),],
                         ),
                       ),
-                      // ListTile(
-                      //   title: Text(userName),
-                      //   subtitle: Text(text),
-                      // ),
                     );
                   }
                   return ListView(children: messageWidgets);
@@ -116,35 +112,36 @@ class _ConnectionsPageState extends State<ConnectionsPage> {
                 child: TextField(
                   controller: messageController,
                   decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                    icon: Icon(Icons.send),
+                    onPressed: () {
+                      final message = messageController.text;
+                      final userName = globals.user_name;
+                      // Add the message to Firestore subcollection
+                      addMessageToFirestore(message, userName);
+                      messageController.clear();
+                      setState(() {
+                        ConnectionsPage();
+                      });
+                    },
+                    ),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20.0),
-                      borderSide: BorderSide(color: Colors.blue),
+                      borderSide: BorderSide(color: Color.fromRGBO(119, 119, 100, 2)),
                     ),
-                    hintStyle: TextStyle(color: Color.fromRGBO(165, 165, 141, 2)),
+                    hintStyle: TextStyle(color: Color.fromRGBO(119, 119, 100, 2)),
                     hintText: "Add a message",
                   ),
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                final message = messageController.text;
-                final userName = globals.user_name;
-                // Add the message to Firestore subcollection
-                addMessageToFirestore(message, userName);
-                messageController.clear();
-                setState(() {
-                  ConnectionsPage();
-                });
-              },
-              child: Text("Submit Message"),
-            ),
+            SizedBox(height: 5),
             Container (
               height: 60,
               width: 300,
               child: GFButton(
                 shape: GFButtonShape.pills,
-                color: Color.fromRGBO(183, 183, 164, 1),
+                color: Color.fromRGBO(165, 165, 141, 1),
                 onPressed: () {
                   Navigator.push(
                     context,

@@ -206,7 +206,7 @@ class NewNotePage extends StatelessWidget {
               style: TextStyle(color: Color.fromRGBO(203, 153, 126, 2), fontSize: 30),
               decoration: InputDecoration(
                 hintStyle: TextStyle(color: Color.fromRGBO(203, 153, 126, 2), fontSize: 30),
-                hintText: 'Enter Title',
+                hintText: 'Enter title',
               ),
               onChanged: (value) {
                 note_title = value;
@@ -221,7 +221,7 @@ class NewNotePage extends StatelessWidget {
                   style: TextStyle(color: Color.fromRGBO(140, 106, 89, 1), fontSize: 20),
                   decoration: InputDecoration(
                     hintStyle: TextStyle(color: Color.fromRGBO(140, 106, 89, 1), fontSize: 20),
-                    hintText: 'Enter Notes',
+                    hintText: 'Enter notes',
                   ),
                   onChanged: (value) {
                     note_text = value;
