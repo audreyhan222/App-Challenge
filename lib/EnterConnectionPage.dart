@@ -18,23 +18,28 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
     var user_name = "";
     return Scaffold (
       appBar: AppBar (
-        title: Text("Add Connection", style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 30)),
+        title: Text("Add Connection", style: GoogleFonts.kanit(color: Color.fromRGBO(119, 119, 100, 1), fontSize: 30)),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(255, 241, 230, 1),
+        backgroundColor: Color.fromRGBO(240, 239, 235, 1),
         toolbarHeight: 80,
-        elevation: 2.0,
+        toolbarOpacity: 1.0,
         shadowColor: Colors.black,
+        elevation: 2.0,
       ),
       body: Center (
         child: Column (
           children: [
+            SizedBox(height: 30),
             Container (
               height: 70,
               width: 350,
               child: TextField(
               obscureText: false,
               decoration: InputDecoration (
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(color: Color.fromRGBO(203, 153, 126, 2)),
+                ),
                 labelText: 'Enter Name'
               ),
               onChanged: (value) {
@@ -42,14 +47,17 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
               }
             ),
             ),
-
+            SizedBox(height: 10),
             Container(
               height: 70,
               width: 350,
               child: TextField(
               obscureText: false,
               decoration: InputDecoration(
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(color: Color.fromRGBO(203, 153, 126, 2)),
+                ),
                 labelText: 'Enter Email Address',
               ),
               onChanged: (value) {
@@ -57,6 +65,7 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
               },
               ), 
             ),
+            SizedBox(height:10),
 
             Container(
               height: 70,
@@ -64,7 +73,10 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
               child: TextField(
               obscureText: true,
               decoration: InputDecoration (
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                  borderSide: BorderSide(color: Color.fromRGBO(203, 153, 126, 2)),
+                ),
                 labelText: 'Create Password'
               ),
               onChanged: (value) {
@@ -72,6 +84,7 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
               }
             ),
             ),
+            SizedBox(height:10),
 
             //sign up button
             Container(
@@ -79,7 +92,7 @@ class _EnterConnectionPageState extends State<EnterConnectionPage> {
               width: 300,
               child: GFButton (
               shape: GFButtonShape.pills,
-              color: Color.fromRGBO(203, 153, 126, 1),
+              color: Color.fromRGBO(165, 165, 141, 1),
               onPressed: () {
                 Navigator.pop(context);
                 

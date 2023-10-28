@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'AlarmPage.dart';
 import 'NotesPage.dart';
@@ -7,6 +8,37 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_alarm_clock/flutter_alarm_clock.dart';
 import 'globals.dart' as globals;
 
+Future<void> getAlarms() async {
+  final DocumentReference userDocRef = globals.firestore.collection("users").doc(globals.user_id);
+
+    try {
+      // Access the "alarms" subcollection and fetch its documents
+      QuerySnapshot alarmQuerySnapshot = await userDocRef.collection("alarms").get();
+
+      if (alarmQuerySnapshot.docs.isNotEmpty) {
+        var alarms_list = alarmQuerySnapshot.docs;
+        for (final alarmDoc in alarms_list) {
+          final data = alarmDoc.data() as Map<String, dynamic>;
+          final added = data["Added"];
+          if (added == "False") {
+            var hour = data["Hour"];
+            var minutes = data["Minutes"];
+            FlutterAlarmClock.createAlarm(hour: int.parse(hour.toString()), minutes: int.parse(minutes.toString()));
+            final alarm_data = <String, String> {
+              "Hour": hour.toString(),
+              "Minutes": minutes.toString(),
+              "Added": "True",
+            };
+            globals.firestore.collection("users").doc(globals.user_id).collection("alarms").doc(alarmDoc.reference.id).set(alarm_data);
+          }
+        }
+      } else {
+        print("No alarms found in the subcollection.");
+      }
+    } catch (e) {
+      print("Error fetching alarms: $e");
+    }
+}
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
   @override
@@ -16,13 +48,12 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build (BuildContext context) {
-    if (globals.user_id == globals.main_id){
-      //Loop through the alarms subcollection and basically add any alarms that have "set" as false and the make "set" true
-      //FlutterAlarmClock.createAlarm(hour: hour, minutes: minutes);
+    if (globals.user_id == globals.main_id) {
+      getAlarms();
     }
     return Scaffold(
       appBar: AppBar (
-        title: Text("Home", style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 30)),
+        title: Image.asset('assets/titlewecare.png', fit: BoxFit.cover),
         centerTitle: true,
         backgroundColor: Color.fromRGBO(255, 241, 230, 1),
         toolbarHeight: 80,
@@ -54,6 +85,7 @@ class _MainPageState extends State<MainPage> {
                     },
                     child: Column (
                       children: [
+                        SizedBox(height:50),
                         Icon(null),
                         Text ("Alarm", style: GoogleFonts.kanit(color: Colors.white, fontSize: 25)),
                       ]
@@ -81,6 +113,7 @@ class _MainPageState extends State<MainPage> {
                     },
                     child: Column (
                       children: [
+                        SizedBox(height:100),
                         Icon(null),
                         Text("Schedule", style: GoogleFonts.kanit(color: Colors.white, fontSize: 25)),
                       ]
@@ -112,6 +145,7 @@ class _MainPageState extends State<MainPage> {
                     },
                     child: Column(
                       children: [
+                        SizedBox(height:90),
                         Icon(null),
                         Text("Notes", style: GoogleFonts.kanit(color: Colors.white, fontSize: 25)),
                       ]
@@ -139,6 +173,7 @@ class _MainPageState extends State<MainPage> {
                     },
                     child: Column(
                       children: [
+                        SizedBox(height:50),
                         Icon(null),
                         Text("Connections", style: GoogleFonts.kanit(color: Colors.white, fontSize: 20))
                       ]

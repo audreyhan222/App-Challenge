@@ -23,7 +23,7 @@ class RealtimeDatabaseInsert extends StatelessWidget {
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    name: "add_name",
+    name: "WeCare",
     options: DefaultFirebaseOptions.currentPlatform,
   );
   final firestore = FirebaseFirestore.instance;
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => MyAppState(),
       child: MaterialApp(
-        title: '[Add Name]',
+        title: 'WeCare',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
@@ -64,11 +64,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter layout demo',
+      title: 'WeCare',
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           toolbarHeight: 120,
-          title: Text('App Name', style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 45)),
+          title: Text('WeCare', style: GoogleFonts.kanit(color: Color.fromRGBO(203, 153, 126, 1), fontSize: 45)),
           backgroundColor: Color.fromRGBO(255, 241, 230, 1),
           centerTitle: true,
         ),
@@ -76,7 +77,10 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column (
             children: [
               Container (
-                height: 350,
+                height: 400,
+                decoration: BoxDecoration(
+                ),
+                child: Image.asset('assets/wecarelogo.png'),
               ),
               Container (
                 height: 60,
